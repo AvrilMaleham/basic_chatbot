@@ -3,10 +3,8 @@ from utils import load_vectorstore
 def main():
     vectorstore = load_vectorstore()
     
-    # Example query
     query = "When was TechCorp founded?"
     
-    # Perform similarity search
     results = vectorstore.similarity_search(query, k=3)
     
     print(f"Query: {query}")
