@@ -20,6 +20,14 @@ Install dependencies.
 
 Create your own **.env** file, following the **.env-example**
 
+### `python build_index.py`
+
+Create vector store.
+
+### `python test_vectorstore.py`
+
+Verify the retrieval logic and embeddings by printing the top 3 chunks from the docs most relevant to the query.
+
 ### `streamlit run app.py`
 
 Runs the app.

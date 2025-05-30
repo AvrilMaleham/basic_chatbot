@@ -60,3 +60,8 @@ test-results/
 
 # PyCharm
 .idea/
+
+# Vector store
+/vectorstore/
+*.faiss
+*.index
