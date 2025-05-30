@@ -19,3 +19,9 @@ Activate the virtual environment (macOS).
 Install dependencies.
 
 Create your own **.env** file, following the **.env.example**
+
+### `streamlit run app.py`
+
+Runs the app.
+
+Open [http://localhost:8501/docs](http://localhost:8501/docs) to view the UI the browser.
