@@ -4,7 +4,7 @@ def main():
     vectorstore = load_vectorstore()
     
     # Example query
-    query = "What colour are bananas?"
+    query = "When was TechCorp founded?"
     
     # Perform similarity search
     results = vectorstore.similarity_search(query, k=3)
