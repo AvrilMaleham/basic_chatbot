@@ -1,0 +1,4 @@
+Bicycles have two wheels.
+Bicycles are powered by pedaling.
+Bicycles are good for exercise.
+Bicycles are quiet.

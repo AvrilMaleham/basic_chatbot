@@ -1,0 +1,4 @@
+Apples are fruits.
+Apples can be red or green.
+Apples grow on trees.
+Apples are crunchy.

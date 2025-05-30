@@ -1,0 +1,4 @@
+Water is a liquid.
+Water is needed for life.
+Water boils at 100 degrees Celsius.
+Water freezes at 0 degrees Celsius.
