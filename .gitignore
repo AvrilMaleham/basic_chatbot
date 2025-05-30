@@ -8,8 +8,11 @@ __pycache__/
 venv/
 .env
 
-# Environment variables
+# Ignore all .env files
 .env*
+
+# But do NOT ignore .env-example
+!.env-example
 
 # macOS system files
 .DS_Store
