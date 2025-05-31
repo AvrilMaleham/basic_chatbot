@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import load_vectorstore, create_qa_chain
+from api.utils import load_vectorstore, create_qa_chain
 from pathlib import Path
 
 st.set_page_config(page_title="Avril's AI Chat", page_icon="🤖")

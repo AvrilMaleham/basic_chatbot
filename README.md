@@ -28,8 +28,14 @@ Create vector store.
 
 Verify the retrieval logic and embeddings by printing the top 3 chunks from the docs most relevant to the query.
 
+### `uvicorn main:app --reload`
+
+Runs the API.
+
+Open [http://localhost:8000/docs](http://localhost:8000/docs) to view the Swagger the browser.
+
 ### `streamlit run app.py`
 
-Runs the app.
+Runs the UI.
 
 Open [http://localhost:8501/docs](http://localhost:8501/docs) to view the UI the browser.
