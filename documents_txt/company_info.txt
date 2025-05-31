@@ -1,0 +1,5 @@
+Our company, TechCorp, was founded in 2015 with a mission to revolutionize artificial intelligence. We specialize in developing cutting-edge machine learning solutions for enterprise clients. Our headquarters is located in San Francisco, California, with additional offices in New York and Austin.
+
+We offer three main services: AI consulting, custom model development, and AI training workshops. Our team consists of 150+ engineers, data scientists, and AI researchers. We work with Fortune 500 companies across various industries including healthcare, finance, and retail.
+
+Our flagship product is the TechCorp AI Platform, which allows businesses to deploy machine learning models at scale. The platform supports both cloud and on-premise deployments and includes features like automated model monitoring, A/B testing, and real-time inference capabilities.
