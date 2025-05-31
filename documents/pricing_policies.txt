@@ -1,9 +1,0 @@
-TechCorp offers flexible pricing options to accommodate businesses of all sizes. Our AI consulting services start at $200 per hour for junior consultants and $500 per hour for senior AI architects.
-
-Custom model development projects are priced based on complexity and timeline. Small projects typically range from $10,000 to $50,000, while enterprise-level solutions can range from $100,000 to $500,000. We provide detailed project estimates after our initial assessment.
-
-Our AI Platform subscription starts at $1,000 per month for the basic tier, which includes up to 10 models and 100,000 predictions per month. The professional tier is $5,000 per month and includes unlimited models and up to 1 million predictions. Enterprise pricing is available for higher volumes.
-
-Training workshops are priced at $2,000 per day for up to 20 participants. Virtual workshops are available at a 20% discount. We offer bulk discounts for multiple workshop bookings.
-
-All pricing includes initial setup and basic support. Premium support packages are available starting at $500 per month.
