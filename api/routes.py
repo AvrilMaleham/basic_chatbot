@@ -13,10 +13,10 @@ async def ask_question(request: QueryRequest):
     answer = response.get("result", "Sorry, I couldn't find an answer.")
     sources = response.get("source_documents", [])
 
-    file_names = {source.metadata.get("source", "Unknown").split('/')[-1] for source in sources}
-
-    citations = "\n\n**📚 Source(s):**\n"
-    for name in sorted(file_names):
-        citations += f"- `{name}`\n"
+    if sources:
+     top_source_name = sources[0].metadata.get("source", "Unknown").split('/')[-1]
+     citations = f"\n\n**📚 Source:**\n- `{top_source_name}`\n"
+    else:
+     citations = ""
 
     return {"answer": answer + citations}

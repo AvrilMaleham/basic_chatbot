@@ -1,16 +1,10 @@
 import streamlit as st
-from api.utils import load_vectorstore, create_qa_chain
-from pathlib import Path
+import requests
 
 st.set_page_config(page_title="Avril's AI Chat", page_icon="🤖")
 st.title("🤖 Avril's AI Chat")
 
-@st.cache_resource
-def init_qa_chain():
-    vectorstore = load_vectorstore()
-    return create_qa_chain(vectorstore)
-
-qa_chain = init_qa_chain()
+API_URL = "http://localhost:8000/ask/"
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -18,15 +12,14 @@ if "messages" not in st.session_state:
 if prompt := st.chat_input("Type your message..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
     
-    response = qa_chain.invoke({"query": prompt})
-
-    answer = response.get("result", "Sorry, I couldn't find an answer.")
-
-    sources = response.get("source_documents", [])
-    if sources:
-       top_doc = sources[0]
-       source_name = Path(top_doc.metadata.get("source", "Unknown")).name
-       answer += f"\n\n**📚 Source:** `{source_name}`"
+    try:
+        response = requests.post(API_URL, json={"query": prompt})
+        response.raise_for_status()
+        data = response.json()
+        answer = data.get("answer", "Sorry, I couldn't find an answer.")
+    except Exception as e:
+        answer = f"Error contacting the API: {e}"
+  
     st.session_state.messages.append({"role": "assistant", "content": answer})
 
 for message in st.session_state.messages:
