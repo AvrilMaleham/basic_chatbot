@@ -6,38 +6,14 @@ To view this project locally:
 
 Clone the app into the directory of your choice.
 
-### `python -m venv venv`
-
-Create a virtual environment (optional but recommended).
-
-### `source venv/bin/activate`
-
-Activate the virtual environment (macOS).
-
-### `pip install -r requirements.txt`
-
-Install dependencies.
-
 Create your own **.env** file, following the **.env-example**
 
-### `python build_index.py`
+Make sure **Docker** is installed locally.
 
-Create vector store.
+### `docker-compose up --build`
 
-### `python test_vectorstore.py`
-
-Verify the retrieval logic and embeddings by printing the top 3 chunks from the docs most relevant to the query.
-
-### `uvicorn main:app --reload`
-
-Runs the API.
+Will build the app as 4 microservices: UI, API, vector store, and a service to build the vector store.
 
 Open [http://localhost:8000/docs](http://localhost:8000/docs) to view the Swagger the browser.
 
-### `streamlit run app.py`
-
-Runs the UI.
-
 Open [http://localhost:8501/docs](http://localhost:8501/docs) to view the UI the browser.
-
-docker-compose up --build
