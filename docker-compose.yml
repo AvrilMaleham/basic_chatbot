@@ -18,14 +18,14 @@ services:
 
   api:
     build: ./api
-    env_file:
-      - .env
     ports:
       - "8000:8000"
     depends_on:
       - build_vectorstore
     volumes:
       - ./vectorstore:/app/vectorstore
+    env_file:
+      - .env
     entrypoint: >
       sh -c "
         echo 'Waiting for vectorstore to be ready...';
