@@ -8,15 +8,13 @@ services:
     command: ["sh", "-c", "mkdir -p /vectorstore && sleep infinity"]
 
   build_vectorstore:
-    env_file:
-      - .env
     build: ./build_vectorstore
     depends_on:
       - vectorstore
     volumes:
       - ./vectorstore:/app/vectorstore
-    command: >
-      sh -c "python build.py && touch /app/vectorstore/.ready"
+    env_file:
+      - .env
 
   api:
     build: ./api
