@@ -7,16 +7,16 @@ services:
       - ./vectorstore:/vectorstore
     command: ["sh", "-c", "mkdir -p /vectorstore && sleep infinity"]
 
-  populator:
+  build_vectorstore:
     env_file:
       - .env
-    build: ./populator
+    build: ./build_vectorstore
     depends_on:
       - vectorstore
     volumes:
       - ./vectorstore:/app/vectorstore
     command: >
-      sh -c "python build_index.py && touch /app/vectorstore/.ready"
+      sh -c "python build.py && touch /app/vectorstore/.ready"
 
   api:
     build: ./api
@@ -25,7 +25,7 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - populator
+      - build_vectorstore
     volumes:
       - ./vectorstore:/app/vectorstore
     entrypoint: >
