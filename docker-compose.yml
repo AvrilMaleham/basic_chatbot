@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  vectorstore:
+    image: busybox
+    volumes:
+      - ./vectorstore:/vectorstore
+    command: ["sh", "-c", "mkdir -p /vectorstore && sleep infinity"]
+
+  populator:
+    env_file:
+      - .env
+    build: ./populator
+    depends_on:
+      - vectorstore
+    volumes:
+      - ./vectorstore:/app/vectorstore
+    command: >
+      sh -c "python build_index.py && touch /app/vectorstore/.ready"
+
+  api:
+    build: ./api
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - populator
+    volumes:
+      - ./vectorstore:/app/vectorstore
+    entrypoint: >
+      sh -c "
+        echo 'Waiting for vectorstore to be ready...';
+        while [ ! -f /app/vectorstore/.ready ]; do
+          sleep 1;
+        done;
+        echo 'Vectorstore ready. Starting API...';
+        uvicorn main:app --host 0.0.0.0 --port 8000
+      "
+
+  ui:
+    build: ./ui
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    environment:
+      - API_URL=http://api:8000

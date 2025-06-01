@@ -39,3 +39,5 @@ Open [http://localhost:8000/docs](http://localhost:8000/docs) to view the Swagge
 Runs the UI.
 
 Open [http://localhost:8501/docs](http://localhost:8501/docs) to view the UI the browser.
+
+docker-compose up --build

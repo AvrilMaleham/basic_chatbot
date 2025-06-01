@@ -4,7 +4,7 @@ import requests
 st.set_page_config(page_title="Avril's AI Chat", page_icon="🤖")
 st.title("🤖 Avril's AI Chat")
 
-API_URL = "http://localhost:8000/ask/"
+API_URL = "http://api:8000/ask/"
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
