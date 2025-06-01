@@ -14,6 +14,6 @@ Make sure **Docker** is installed locally.
 
 Will build the app as 4 microservices: UI, API, vector store, and a service to build the vector store.
 
-Open [http://localhost:8000/docs](http://localhost:8000/docs) to view the Swagger the browser.
+Open [http://localhost:8000/docs](http://localhost:8000/docs) to view the Swagger in the browser.
 
-Open [http://localhost:8501/docs](http://localhost:8501/docs) to view the UI the browser.
+Open [http://localhost:8501/docs](http://localhost:8501/docs) to view the UI in the browser.
