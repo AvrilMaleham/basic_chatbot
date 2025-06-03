@@ -3,6 +3,7 @@ from langchain_openai import ChatOpenAI
 from langchain.chains import RetrievalQA
 from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
+from prompt import CUSTOM_QA_PROMPT
 
 load_dotenv()
 
@@ -15,4 +16,4 @@ def create_qa_chain(vectorstore):
     """Return RetrievalQA chain"""
     llm = ChatOpenAI(model_name="gpt-3.5-turbo")
     retriever = vectorstore.as_retriever()
-    return RetrievalQA.from_chain_type(llm=llm, retriever=retriever, return_source_documents=True)
+    return RetrievalQA.from_chain_type(llm=llm, retriever=retriever, chain_type_kwargs={"prompt": CUSTOM_QA_PROMPT}, return_source_documents=True)
