@@ -18,5 +18,10 @@ Open [http://localhost:8000/docs](http://localhost:8000/docs) to view the Swagge
 
 Open [http://localhost:8501](http://localhost:8501) to view the UI in the browser.
 
-docker compose run --rm dbmate new <table_name>
-docker exec -it basic_chatbot-db-1 psql -U postgres -d chatbotdb
+### `docker exec -it basic_chatbot-db-1 psql -U postgres -d chatbotdb`
+
+Programatically access the DB.
+
+### `docker compose run --rm dbmate new <table_name>`
+
+Generate a new migration file to create a table (useful if wanting to extend the project).
