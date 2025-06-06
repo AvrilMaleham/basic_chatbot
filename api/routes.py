@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from schemas import QueryRequest
 import globals
 import psycopg2
+from psycopg2.extras import RealDictCursor
 
 router = APIRouter()
 
@@ -14,9 +15,8 @@ def get_db_connection():
         port="5432"
     )
 
-@router.post("/")
+@router.post("/ask/")
 async def ask_question(request: QueryRequest):
-    session_id = request.session_id or "default"
      
     if globals.qa_chain is None:
         return {"error": "QA chain is not initialized yet."}
@@ -25,8 +25,8 @@ async def ask_question(request: QueryRequest):
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute(
-        "INSERT INTO chat_sessions (session_id, message, role) VALUES (%s, %s, %s)",
-        (session_id, request.query, "user")
+        "INSERT INTO chat_sessions (role, message) VALUES (%s, %s)",
+        ("user", request.query)
     )
     conn.commit()
 
@@ -45,11 +45,23 @@ async def ask_question(request: QueryRequest):
      
     # Save assistant response
     cur.execute(
-        "INSERT INTO chat_sessions (session_id, message, role) VALUES (%s, %s, %s)",
-        (session_id, full_answer, "assistant")
+        "INSERT INTO chat_sessions (role, message) VALUES (%s, %s)",
+        ("assistant", full_answer)
     )
     conn.commit()
     cur.close()
     conn.close()
 
     return {"answer": full_answer}
+
+@router.get("/session/")
+async def get_session():
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    cur.execute(
+        "SELECT role, message, created_at FROM chat_sessions ORDER BY created_at ASC LIMIT 10"
+    )
+    rows = cur.fetchall()
+    cur.close()
+    conn.close()
+    return rows

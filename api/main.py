@@ -16,4 +16,4 @@ app = FastAPI(lifespan=lifespan)
 def test():
     return {"hello": "world"}
 
-app.include_router(router, prefix="/ask", tags=["ask"])
+app.include_router(router, prefix="/chat", tags=["chat"])
