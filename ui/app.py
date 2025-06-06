@@ -1,8 +1,8 @@
 import streamlit as st
 import requests
 
-st.set_page_config(page_title="Avril's AI Chat", page_icon="🤖")
-st.title("🤖 Avril's AI Chat")
+st.set_page_config(page_title="TechCorpGPT", page_icon="🤖")
+st.title("TechCorpGPT")
 
 API_ASK_URL = "http://api:8000/chat/ask/"
 API_SESSION_URL = "http://api:8000/chat/session/"
