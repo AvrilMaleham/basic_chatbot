@@ -12,6 +12,7 @@ S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME")
 s3 = boto3.client("s3", region_name=AWS_REGION)
 
 def extract_text_from_pdf_bytes(pdf_bytes, source_name):
+    """Extract text from PDF bytes as a LangChain Document"""
     doc = fitz.open(stream=pdf_bytes, filetype="pdf")
     text = ""
     for page in doc:
@@ -19,6 +20,7 @@ def extract_text_from_pdf_bytes(pdf_bytes, source_name):
     return Document(page_content=text, metadata={"source": source_name})
 
 def load_documents(bucket=S3_BUCKET_NAME, prefix=""):
+    """Load PDFs from S3 and return as LangChain Documents"""
     docs = []
     response = s3.list_objects_v2(Bucket=bucket, Prefix=prefix)
     for obj in response.get("Contents", []):
@@ -32,10 +34,12 @@ def load_documents(bucket=S3_BUCKET_NAME, prefix=""):
     return docs
 
 def split_documents(documents):
+    """Split documents into smaller text chunks"""
     splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     return splitter.split_documents(documents)
 
 def build_vectorstore(docs, save_path="vectorstore"):
+    """Create and save a FAISS vectorstore from documents"""
     embeddings = OpenAIEmbeddings()
     vectorstore = FAISS.from_documents(docs, embeddings)
     vectorstore.save_local(save_path)

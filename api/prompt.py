@@ -1,6 +1,5 @@
 from langchain import PromptTemplate
  
-# This template tells the model exactly when/how to mention whether it used the context.
 CUSTOM_QA_PROMPT = PromptTemplate(
     input_variables=["context", "question"],
     template="""
