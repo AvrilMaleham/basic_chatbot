@@ -25,3 +25,13 @@ Programatically access the DB.
 ### `docker compose run --rm dbmate new <table_name>`
 
 Generate a new migration file to create a table (useful if wanting to extend the project).
+
+# Key project skills:
+
+- Langchain
+- OpenAI API
+- FAISS
+- AWS S3
+- Dbmate
+- Microservice architecture
+- RAG pipeline planning
