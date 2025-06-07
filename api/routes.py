@@ -33,26 +33,17 @@ async def ask_question(request: QueryRequest):
     # Generate assistant response
     response = globals.qa_chain.invoke({"query": request.query})
     answer = response.get("result", "Sorry, I couldn't find an answer.")
-    sources = response.get("source_documents", [])
-
-    if sources:
-     top_source_name = sources[0].metadata.get("source", "Unknown").split('/')[-1]
-     citations = f"\n\n**📚 Source:**\n- `{top_source_name}`\n"
-    else:
-     citations = ""
-     
-    full_answer = answer + citations
      
     # Save assistant response
     cur.execute(
         "INSERT INTO chat_sessions (role, message) VALUES (%s, %s)",
-        ("assistant", full_answer)
+        ("assistant", answer)
     )
     conn.commit()
     cur.close()
     conn.close()
 
-    return {"answer": full_answer}
+    return {"answer": answer}
 
 @router.get("/session/")
 async def get_session():
