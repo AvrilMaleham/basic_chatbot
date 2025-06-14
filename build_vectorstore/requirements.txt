@@ -1,4 +1,4 @@
-PyMuPDF
+PyMuPDF==1.25.5
 langchain
 langchain-openai
 langchain-community
