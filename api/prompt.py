@@ -18,3 +18,16 @@ Question: {question}
 Answer exactly in one of the two formats above.
 """.strip(),
 )
+
+CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template("""
+Given the following conversation and a follow-up question, rephrase the follow-up question to be a standalone question.
+ 
+Chat History:
+{chat_history}
+ 
+Follow-up Question:
+{question}
+ 
+Standalone Question:
+""".strip(),
+)

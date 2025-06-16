@@ -14,6 +14,8 @@ def get_db_connection():
         host="db",
         port="5432"
     )
+    
+chat_history = []
 
 @router.post("/ask/")
 async def ask_question(request: QueryRequest):
@@ -31,8 +33,11 @@ async def ask_question(request: QueryRequest):
     conn.commit()
 
     # Generate assistant response
-    response = globals.qa_chain.invoke({"query": request.query})
-    answer = response.get("result", "Sorry, I couldn't find an answer.")
+    response = globals.qa_chain.invoke({
+        "question": request.query,
+        "chat_history": chat_history
+    })
+    answer = response.get("answer", "Sorry, I couldn't find an answer.")
      
     # Save assistant response
     cur.execute(
@@ -42,6 +47,8 @@ async def ask_question(request: QueryRequest):
     conn.commit()
     cur.close()
     conn.close()
+    
+    chat_history.append((request.query, response["answer"]))
 
     return {"answer": answer}
 
