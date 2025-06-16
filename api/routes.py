@@ -50,8 +50,17 @@ async def get_session():
     conn = get_db_connection()
     cur = conn.cursor(cursor_factory=RealDictCursor)
     cur.execute(
-        "SELECT role, message, created_at FROM chat_sessions ORDER BY created_at ASC LIMIT 10"
-    )
+       """
+    SELECT role, message, created_at
+    FROM (
+        SELECT role, message, created_at
+        FROM chat_sessions
+        ORDER BY created_at DESC
+        LIMIT 10
+    ) AS sub
+    ORDER BY created_at ASC
+    """
+)
     rows = cur.fetchall()
     cur.close()
     conn.close()
